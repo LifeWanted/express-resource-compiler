@@ -33,11 +33,21 @@ function makePath( destinationPath, callback ){
 }
 
 function compile( opts, sourceFile, destinationFile, callback ){
-    async.waterfall([
-        fs.readFile.bind( fs, sourceFile, 'utf8' ),
-        opts.compiler.bind( opts ),
-        fs.writeFile.bind( fs, destinationFile )
-    ], callback );
+    if( opts.stream ){
+        var destinationStream   = fs.createWriteStream( destinationFile, { encoding : 'utf8' } );
+        var compilerStream      = opts.compile( destinationStream );
+        var sourceStream        = fs.createReadStream( sourceFile, { encoding : 'utf8' } );
+
+        sourceStream.pipe( compilerStream );
+        compilerStream.on( 'close', callback );
+    }
+    else {
+        async.waterfall([
+            fs.readFile.bind( fs, sourceFile, 'utf8' ),
+            opts.compiler.bind( opts ),
+            fs.writeFile.bind( fs, destinationFile )
+        ], callback );
+    }
 }
 
 module.exports = function( opts ){
