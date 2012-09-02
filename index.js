@@ -33,14 +33,11 @@ function makePath( destinationPath, callback ){
 }
 
 function compile( opts, sourceFile, destinationFile, callback ){
-    fs.readFile( sourceFile, 'utf8', function( err, data ){
-        if( err ){
-            callback( err );
-            return;
-        }
-
-        opts.compiler( data, opts, callback );
-    });
+    async.waterfall([
+        fs.readFile.bind( fs, sourceFile, 'utf8' ),
+        opts.compiler.bind( opts ),
+        fs.writeFile.bind( fs, destinationFile )
+    ], callback );
 }
 
 module.exports = function( opts ){
