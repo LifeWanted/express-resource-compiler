@@ -21,6 +21,6 @@
   "author": "Oz <oz@lifewanted.com>",
   "license": "LGPL",
   "dependencies" : {
-    "async" : ">=0.1.0"
+    "async" : ">=0.1.1"
   }
 }

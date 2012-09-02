@@ -50,10 +50,9 @@ function compile( opts, sourceFile, destinationFile, callback ){
     }
 }
 
-module.exports = function( opts ){
-    if( !opts || !opts.compile ){
-        throw new Error( 'The "compile" option is not optional.' );
-    }
+module.exports = function( compiler, opts ){
+    opts = opts || {};
+    opts.compile = compiler;
 
     var sourcePath      = opts.src  || '';
     var destinationPath = opts.dest || opts.src;
