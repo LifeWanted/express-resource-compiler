@@ -14,8 +14,7 @@
     "express",
     "resource",
     "resources",
-    "resource",
-    "compiler",
+    "resource compiler",
     "compiler"
   ],
   "author": "Oz <oz@lifewanted.com>",
