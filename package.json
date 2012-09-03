@@ -1,6 +1,6 @@
 {
   "name": "resource-compiler",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Resource compiler and cacher for Express.",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,9 @@
     "resource",
     "resources",
     "resource compiler",
-    "compiler"
+    "compiler",
+    "utilities",
+    "utility"
   ],
   "author": "Oz <oz@lifewanted.com>",
   "license": "LGPL",
