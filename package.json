@@ -1,6 +1,6 @@
 {
   "name": "resource-compiler",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Resource compiler and cacher for Express.",
   "main": "index.js",
   "scripts": {
