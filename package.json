@@ -1,6 +1,6 @@
 {
   "name": "resource-compiler",
-  "version": "0.2.8",
+  "version": "1.0.0",
   "description": "Resource compiler and cacher for Express.",
   "main": "index.js",
   "scripts": {
@@ -19,9 +19,9 @@
     "utilities",
     "utility"
   ],
-  "author": "Oz <oz@lifewanted.com>",
-  "license": "LGPL",
+  "author": "Natalie <natalie@lifewanted.com>",
+  "license": "MIT",
   "dependencies" : {
-    "async" : ">=0.1.0"
+    "async" : ">=0.2.0"
   }
 }
