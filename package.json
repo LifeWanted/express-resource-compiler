@@ -1,27 +1,28 @@
 {
-  "name": "resource-compiler",
-  "version": "1.0.0",
-  "description": "Resource compiler and cacher for Express.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/LifeWanted/express-resource-compiler"
-  },
-  "keywords": [
-    "express",
-    "resource",
-    "resources",
-    "resource compiler",
-    "compiler",
-    "utilities",
-    "utility"
-  ],
-  "author": "Natalie <natalie@lifewanted.com>",
-  "license": "MIT",
-  "dependencies" : {
-    "async" : ">=0.2.0"
-  }
+    "name": "resource-compiler",
+    "version": "1.0.0",
+    "description": "Resource compiler and cacher for Express.",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha --recursive tests/unit"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/LifeWanted/express-resource-compiler"
+    },
+    "keywords": [
+        "express",
+        "resource",
+        "resources",
+        "resource compiler",
+        "compiler",
+        "utilities",
+        "utility",
+        "middleware"
+    ],
+    "author": "Natalie <natalie@lifewanted.com>",
+    "license": "MIT",
+    "dependencies" : {
+        "async" : ">=0.2.0"
+    }
 }

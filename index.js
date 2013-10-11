@@ -20,7 +20,7 @@ module.exports = function( opts ){
         // Determine the source and destination paths.
         var file            = req.path;
         var extension       = path.extname( file );
-        var noExt           = path.basename( file, extension );
+        var noExt           = file.substr( 0, file.length - extension.length );
         var sourcePath      = path.join( opts.source        || req.route.path, noExt );
         var destinationPath = path.join( opts.destination   || req.route.path, path.basename( file ) );
 
@@ -90,7 +90,7 @@ module.exports = function( opts ){
 
                     // Otherwise the source does not exist at all, so we should just skip ahead.
                     else {
-                        cb();
+                        cb( true );
                     }
                 });
             },
@@ -99,7 +99,7 @@ module.exports = function( opts ){
             function( sourceFiles, cb ){
                 // Make sure we have the source files how we need them.
                 if( !sourceFiles || !sourceFiles.length ){
-                    return cb();
+                    return cb( true );
                 }
                 if( !Array.isArray( sourceFiles ) ){
                     sourceFiles = [ sourceFiles ];
@@ -111,7 +111,8 @@ module.exports = function( opts ){
                     flags       : 'w',
                     encoding    : opts.encoding || 'utf-8'
                 });
-                
+                outStream.on( 'finish', cb );
+
                 // Decide on the next stream.
                 var nextStream = opts.next;
                 if( nextStream ){
@@ -134,14 +135,16 @@ module.exports = function( opts ){
                             nextStream.setFilePath( filePath );
                         }
                         fileStream.pipe( nextStream, { end : false } );
+                        fileStream.on( 'error', cb );
+                        fileStream.on( 'end', cb );
                     },
                     function( err ){
-                        nextStream.end( function(){ cb( err ); } );
+                        nextStream.end();
                     }
                 );
             }
         ], function( err ){
-            next( err );
+            next( err === true ? null : err );
         });
     };
     
